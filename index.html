@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nishtha Shankar · Portfolio</title>
+  <meta name="description" content="Nishtha Shankar — 2nd year AI/ML student at JAIN University, public speaker and hackathon participant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="nav">
+  <a href="#home" class="logo">Nishtha<span>.</span></a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#clubs">Clubs</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact" class="pill">Say hello</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="hero-text reveal">
+      <p class="eyebrow">AI/ML Student · Public Speaker</p>
+      <h1>Hi, I'm <em>Nishtha Shankar</em></h1>
+      <p class="lead">A second-year AI/ML student at JAIN (Deemed-to-be) University who loves learning, building and finding the right words to share ideas.</p>
+      <div class="cta">
+        <a href="#contact" class="btn primary">Get in touch</a>
+        <a href="#certificates" class="btn ghost">View certificates</a>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <div class="frame">
+        <img src="{{ url_for('static', filename='img/nishtha.jpg') }}" alt="Portrait of Nishtha Shankar">
+      </div>
+      <span class="tag">AI/ML · JAIN University</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-head reveal">
+      <p class="eyebrow">About me</p>
+      <h2>Curious mind, <em>confident voice</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="card reveal">
+        <p>I'm Nishtha Shankar, a 2nd year B.Tech student specialising in Artificial Intelligence and Machine Learning at JAIN (Deemed-to-be) University. I'm endlessly enthusiastic about learning — whether it's a new concept in machine learning or a new way of looking at a problem, I enjoy diving in and understanding how things work.</p>
+        <p>Alongside technology, public speaking is one of my biggest passions. Speaking on stage taught me to organise my thoughts, listen carefully and communicate ideas with clarity — skills I bring into every team and project I'm part of.</p>
+      </div>
+      <ul class="stats reveal">
+        <li><strong>2nd</strong><span>Year · AI/ML</span></li>
+        <li><strong>2</strong><span>College clubs</span></li>
+        <li><strong>2019</strong><span>Best Public Speaker, DNH &amp; DD</span></li>
+        <li><strong>4</strong><span>Hackathons</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLUBS -->
+  <section id="clubs" class="section tint">
+    <div class="section-head reveal">
+      <p class="eyebrow">Beyond the classroom</p>
+      <h2>Clubs I'm part of</h2>
+    </div>
+    <div class="clubs">
+      <article class="club reveal">
+        <div class="icon">⌬</div>
+        <h3>TURING Club</h3>
+        <p class="role">Host club for AI/ML</p>
+        <p>A community centred on Artificial Intelligence and Machine Learning, where I get to learn alongside like-minded students and explore ideas beyond the curriculum.</p>
+      </article>
+      <article class="club reveal">
+        <div class="icon">❝</div>
+        <h3>Orators Club</h3>
+        <p class="role">Public speaking &amp; debate</p>
+        <p>A space to sharpen my speaking, debating and presentation skills — continuing the passion for the spoken word that has been with me since school.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="section">
+    <div class="section-head reveal">
+      <p class="eyebrow">Achievements</p>
+      <h2>Finding my <em>voice</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <span class="year">2019</span>
+        <div class="t-card highlight">
+          <h3>Best Public Speaker — Dadra &amp; Nagar Haveli and Daman &amp; Diu</h3>
+          <p>Awarded the title of Best Public Speaker of the Union Territory of Dadra and Nagar Haveli and Daman and Diu.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <span class="year">School</span>
+        <div class="t-card">
+          <h3>Inter-school Debating Competitions</h3>
+          <p>Won inter-school debating competitions, building the habit of research, structured argument and thinking on my feet.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <span class="year">School</span>
+        <div class="t-card">
+          <h3>Inter-school Elocution Competitions</h3>
+          <p>Won inter-school elocution competitions, focusing on expression, delivery and connecting with an audience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="section tint">
+    <div class="section-head reveal">
+      <p class="eyebrow">Hackathons</p>
+      <h2>Certificates</h2>
+    </div>
+    <div class="certs">
+      {% for c in certificates %}
+      <figure class="cert reveal">
+        {% if c.exists %}
+        <button class="cert-img" data-full="{{ url_for('static', filename='img/certs/' ~ c.file) }}" aria-label="Open {{ c.title }} certificate">
+          <img src="{{ url_for('static', filename='img/certs/' ~ c.file) }}" alt="{{ c.title }} certificate" loading="lazy">
+        </button>
+        {% else %}
+        <div class="cert-img placeholder">
+          <span>🏅</span>
+          <p>Certificate coming soon</p>
+        </div>
+        {% endif %}
+        <figcaption>
+          <h3>{{ c.title }}</h3>
+          <p>{{ c.subtitle }}</p>
+          <small>{{ c.date }}</small>
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's <em>connect</em></h2>
+      <p class="sub">Have a question, an idea or an opportunity? Drop me a message.</p>
+    </div>
+    <form id="contact-form" class="form card reveal" novalidate>
+      <label>Name
+        <input type="text" name="name" placeholder="Your name" required maxlength="80">
+        <small class="err" data-for="name"></small>
+      </label>
+      <label>Email
+        <input type="email" name="email" placeholder="you@example.com" required maxlength="120">
+        <small class="err" data-for="email"></small>
+      </label>
+      <label>Message
+        <textarea name="message" rows="5" placeholder="Write your message…" required maxlength="2000"></textarea>
+        <small class="err" data-for="message"></small>
+      </label>
+      <button type="submit" class="btn primary">Send message</button>
+      <p id="form-status" role="status"></p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>Designed &amp; built by Nishtha Shankar · AI/ML, JAIN University</p>
+  <p class="counter">You are visitor <strong>#{{ "{:,}".format(visits) }}</strong></p>
+</footer>
+
+<div id="lightbox" class="lightbox" hidden><img alt=""><button aria-label="Close">×</button></div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
